@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/odysseia-greek/plato/aristoteles/configs"
+	configs "github.com/odysseia-greek/knossos/periandros/config"
 	"github.com/odysseia-greek/plato/models"
 	"github.com/odysseia-greek/plato/service"
 	"github.com/stretchr/testify/assert"
@@ -55,7 +55,7 @@ func TestSolonHealthy(t *testing.T) {
 
 		testClient, err := service.NewFakeClient(config, codes, responses)
 
-		testConfig := configs.PeriandrosConfig{
+		testConfig := configs.Config{
 			Namespace:            ns,
 			HttpClients:          testClient,
 			SolonCreationRequest: requestBody,
@@ -81,7 +81,7 @@ func TestSolonHealthy(t *testing.T) {
 
 		testClient, err := service.NewFakeClient(config, codes, responses)
 
-		testConfig := configs.PeriandrosConfig{
+		testConfig := configs.Config{
 			Namespace:            ns,
 			HttpClients:          testClient,
 			SolonCreationRequest: requestBody,
@@ -118,7 +118,7 @@ func TestSolonHealthy(t *testing.T) {
 
 		testClient, err := service.NewFakeClient(config, codes, responses)
 
-		testConfig := configs.PeriandrosConfig{
+		testConfig := configs.Config{
 			Namespace:            ns,
 			HttpClients:          testClient,
 			SolonCreationRequest: requestBody,
@@ -182,7 +182,7 @@ func TestCreatUser(t *testing.T) {
 
 		testClient, err := service.NewFakeClient(config, codes, responses)
 
-		testConfig := configs.PeriandrosConfig{
+		testConfig := configs.Config{
 			Namespace:            ns,
 			HttpClients:          testClient,
 			SolonCreationRequest: requestBody,
@@ -213,7 +213,7 @@ func TestCreatUser(t *testing.T) {
 
 		testClient, err := service.NewFakeClient(config, codes, responses)
 
-		testConfig := configs.PeriandrosConfig{
+		testConfig := configs.Config{
 			Namespace:            ns,
 			HttpClients:          testClient,
 			SolonCreationRequest: requestBody,
@@ -247,7 +247,7 @@ func TestCreatUser(t *testing.T) {
 
 		testClient, err := service.NewFakeClient(config, codes, responses)
 
-		testConfig := configs.PeriandrosConfig{
+		testConfig := configs.Config{
 			Namespace:            ns,
 			HttpClients:          testClient,
 			SolonCreationRequest: requestBody,

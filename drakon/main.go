@@ -5,8 +5,7 @@ import (
 	"fmt"
 	"github.com/kpango/glg"
 	"github.com/odysseia-greek/knossos/drakon/app"
-	"github.com/odysseia-greek/plato/aristoteles"
-	"github.com/odysseia-greek/plato/aristoteles/configs"
+	"github.com/odysseia-greek/knossos/drakon/config"
 	"k8s.io/client-go/tools/leaderelection"
 	"k8s.io/client-go/tools/leaderelection/resourcelock"
 	"os"
@@ -70,15 +69,12 @@ func main() {
 
 	glg.Debug("creating config")
 
-	baseConfig := configs.DrakonConfig{}
-	unparsedConfig, err := aristoteles.NewConfig(baseConfig)
+	env := os.Getenv("ENV")
+
+	drakonConfig, err := config.CreateNewConfig(env)
 	if err != nil {
 		glg.Error(err)
 		glg.Fatal("death has found me")
-	}
-	drakonConfig, ok := unparsedConfig.(*configs.DrakonConfig)
-	if !ok {
-		glg.Fatal("could not parse config")
 	}
 
 	var wg sync.WaitGroup

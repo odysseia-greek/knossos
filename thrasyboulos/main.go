@@ -3,8 +3,7 @@ package main
 import (
 	"github.com/kpango/glg"
 	"github.com/odysseia-greek/knossos/thrasyboulos/app"
-	"github.com/odysseia-greek/plato/aristoteles"
-	"github.com/odysseia-greek/plato/aristoteles/configs"
+	"github.com/odysseia-greek/knossos/thrasyboulos/config"
 	"os"
 	"strings"
 	"time"
@@ -29,15 +28,12 @@ func main() {
 
 	glg.Debug("creating config")
 
-	baseConfig := configs.ThrasyboulosConfig{}
-	unparsedConfig, err := aristoteles.NewConfig(baseConfig)
+	env := os.Getenv("ENV")
+
+	thrasyboulosConfig, err := config.CreateNewConfig(env)
 	if err != nil {
 		glg.Error(err)
 		glg.Fatal("death has found me")
-	}
-	config, ok := unparsedConfig.(*configs.ThrasyboulosConfig)
-	if !ok {
-		glg.Fatal("could not parse config")
 	}
 
 	duration := time.Millisecond * 5000
@@ -45,7 +41,7 @@ func main() {
 	timeFinished := minute.Milliseconds()
 
 	done := make(chan bool)
-	handler := app.ThrasyboulosHandler{Config: config, Duration: duration, TimeFinished: timeFinished}
+	handler := app.ThrasyboulosHandler{Config: thrasyboulosConfig, Duration: duration, TimeFinished: timeFinished}
 
 	go func() {
 		handler.WaitForJobsToFinish(done)
@@ -54,7 +50,7 @@ func main() {
 	select {
 
 	case <-done:
-		glg.Infof("%s job finished", config.Job)
+		glg.Infof("%s job finished", thrasyboulosConfig.Job)
 		os.Exit(0)
 	}
 

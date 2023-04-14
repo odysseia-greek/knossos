@@ -5,13 +5,13 @@ import (
 	"fmt"
 	uuid2 "github.com/google/uuid"
 	"github.com/kpango/glg"
-	"github.com/odysseia-greek/plato/aristoteles/configs"
+	configs "github.com/odysseia-greek/knossos/periandros/config"
 	"github.com/odysseia-greek/plato/models"
 	"time"
 )
 
 type PeriandrosHandler struct {
-	Config   *configs.PeriandrosConfig
+	Config   *configs.Config
 	Duration time.Duration
 	Timeout  time.Duration
 }

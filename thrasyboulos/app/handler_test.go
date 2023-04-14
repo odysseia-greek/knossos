@@ -1,8 +1,8 @@
 package app
 
 import (
-	"github.com/odysseia-greek/plato/aristoteles/configs"
-	"github.com/odysseia-greek/plato/kubernetes"
+	configs "github.com/odysseia-greek/knossos/thrasyboulos/config"
+	kubernetes "github.com/odysseia-greek/thales"
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
@@ -23,7 +23,7 @@ func TestJobExit(t *testing.T) {
 		assert.Nil(t, err)
 		assert.Equal(t, job.Name, expectedName)
 
-		testConfig := configs.ThrasyboulosConfig{
+		testConfig := configs.Config{
 			Kube:      testClient,
 			Job:       expectedName,
 			Namespace: ns,
@@ -50,7 +50,7 @@ func TestJobExit(t *testing.T) {
 		assert.Nil(t, err)
 		assert.Equal(t, job.Name, expectedName)
 
-		testConfig := configs.ThrasyboulosConfig{
+		testConfig := configs.Config{
 			Kube:      testClient,
 			Job:       expectedName,
 			Namespace: ns,

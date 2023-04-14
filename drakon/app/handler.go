@@ -3,12 +3,12 @@ package app
 import (
 	"fmt"
 	"github.com/kpango/glg"
-	"github.com/odysseia-greek/plato/aristoteles/configs"
-	"github.com/odysseia-greek/plato/elastic"
+	"github.com/odysseia-greek/aristoteles/models"
+	configs "github.com/odysseia-greek/knossos/drakon/config"
 )
 
 type DrakonHandler struct {
-	Config *configs.DrakonConfig
+	Config *configs.Config
 }
 
 const (
@@ -40,7 +40,7 @@ func (d *DrakonHandler) CreateRoles() (bool, error) {
 
 			names := []string{index}
 
-			indices := []elastic.Indices{
+			indices := []models.Indices{
 				{
 					Names:      names,
 					Privileges: privileges,
@@ -48,12 +48,12 @@ func (d *DrakonHandler) CreateRoles() (bool, error) {
 				},
 			}
 
-			putRole := elastic.CreateRoleRequest{
+			putRole := models.CreateRoleRequest{
 				Cluster:      []string{"all"},
 				Indices:      indices,
-				Applications: []elastic.Application{},
+				Applications: []models.Application{},
 				RunAs:        nil,
-				Metadata:     elastic.Metadata{Version: 1},
+				Metadata:     models.Metadata{Version: 1},
 			}
 
 			roleName := fmt.Sprintf("%s_%s", index, role)
