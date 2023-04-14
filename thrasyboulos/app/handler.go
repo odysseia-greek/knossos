@@ -2,12 +2,12 @@ package app
 
 import (
 	"github.com/kpango/glg"
-	"github.com/odysseia-greek/plato/aristoteles/configs"
+	configs "github.com/odysseia-greek/knossos/thrasyboulos/config"
 	"time"
 )
 
 type ThrasyboulosHandler struct {
-	Config       *configs.ThrasyboulosConfig
+	Config       *configs.Config
 	Duration     time.Duration
 	TimeFinished int64
 }
