@@ -1,7 +1,6 @@
 package config
 
 import (
-	"github.com/kpango/glg"
 	"github.com/odysseia-greek/aristoteles"
 	"github.com/odysseia-greek/aristoteles/models"
 	"github.com/odysseia-greek/plato/config"
@@ -24,24 +23,7 @@ func CreateNewConfig(env string) (*Config, error) {
 
 	var cfg models.Config
 
-	if healthCheck {
-		vaultConfig, err := config.ConfigFromVault()
-		if err != nil {
-			glg.Error(err)
-			return nil, err
-		}
-
-		service := aristoteles.ElasticService(tls)
-
-		cfg = models.Config{
-			Service:     service,
-			Username:    vaultConfig.ElasticUsername,
-			Password:    vaultConfig.ElasticPassword,
-			ElasticCERT: vaultConfig.ElasticCERT,
-		}
-	} else {
-		cfg = aristoteles.ElasticConfig(env, testOverWrite, tls)
-	}
+	cfg = aristoteles.ElasticConfig(env, testOverWrite, tls)
 
 	elastic, err := aristoteles.NewClient(cfg)
 	if err != nil {

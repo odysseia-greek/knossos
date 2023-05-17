@@ -34,6 +34,7 @@ func (d *DrakonHandler) CreateRoles() (bool, error) {
 			case hybridRole:
 				privileges = append(privileges, "create")
 				privileges = append(privileges, "read")
+				privileges = append(privileges, "index")
 			case apiRole:
 				privileges = append(privileges, "read")
 			}
